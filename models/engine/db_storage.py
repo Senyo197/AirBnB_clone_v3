@@ -59,6 +59,27 @@ class DBStorage:
         """commit all changes of the current database session"""
         self.__session.commit()
 
+    def get(self, cls, id):
+        """
+        Retrieve one object based on its class and id
+        Returns the object or none if not found
+        """
+        key = "{}.{}".format(cls.__name__, id)
+        return self.all(cls).get(key, None)
+
+    def count(self, cls=None):
+        """
+        count the number of objects in a database matching a given class
+        If no class is passed, return the number of the objects in the storage
+        """
+        if cls:
+            return len(self.all(cls))
+        else:
+            count = 0
+            for c in classes.values:
+                count += len(self.all(c))
+        return count
+
     def delete(self, obj=None):
         """delete from the current database session obj if not None"""
         if obj is not None:
