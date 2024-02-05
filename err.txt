@@ -1,0 +1,39 @@
+Collecting mysqlclient
+  Using cached mysqlclient-2.2.3.tar.gz (90 kB)
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'error'
+  ERROR: Command errored out with exit status 1:
+   command: /root/venv/bin/python3 /tmp/tmpw4judzg5 get_requires_for_build_wheel /tmp/tmp78r1r98k
+       cwd: /tmp/pip-install-c8lv1w3w/mysqlclient
+  Complete output (27 lines):
+  /bin/sh: 1: pkg-config: not found
+  /bin/sh: 1: pkg-config: not found
+  /bin/sh: 1: pkg-config: not found
+  Trying pkg-config --exists mysqlclient
+  Command 'pkg-config --exists mysqlclient' returned non-zero exit status 127.
+  Trying pkg-config --exists mariadb
+  Command 'pkg-config --exists mariadb' returned non-zero exit status 127.
+  Trying pkg-config --exists libmariadb
+  Command 'pkg-config --exists libmariadb' returned non-zero exit status 127.
+  Traceback (most recent call last):
+    File "/tmp/tmpw4judzg5", line 280, in <module>
+      main()
+    File "/tmp/tmpw4judzg5", line 263, in main
+      json_out['return_val'] = hook(**hook_input['kwargs'])
+    File "/tmp/tmpw4judzg5", line 114, in get_requires_for_build_wheel
+      return hook(config_settings)
+    File "/tmp/pip-build-env-ixi9z_3_/overlay/lib/python3.8/site-packages/setuptools/build_meta.py", line 325, in get_requires_for_build_wheel
+      return self._get_build_requires(config_settings, requirements=['wheel'])
+    File "/tmp/pip-build-env-ixi9z_3_/overlay/lib/python3.8/site-packages/setuptools/build_meta.py", line 295, in _get_build_requires
+      self.run_setup()
+    File "/tmp/pip-build-env-ixi9z_3_/overlay/lib/python3.8/site-packages/setuptools/build_meta.py", line 311, in run_setup
+      exec(code, locals())
+    File "<string>", line 155, in <module>
+    File "<string>", line 49, in get_config_posix
+    File "<string>", line 28, in find_package_name
+  Exception: Can not find valid pkg-config name.
+  Specify MYSQLCLIENT_CFLAGS and MYSQLCLIENT_LDFLAGS env vars manually
+  ----------------------------------------
+ERROR: Command errored out with exit status 1: /root/venv/bin/python3 /tmp/tmpw4judzg5 get_requires_for_build_wheel /tmp/tmp78r1r98k Check the logs for full command output.
