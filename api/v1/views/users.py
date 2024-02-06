@@ -7,18 +7,17 @@ This module defines ithe views for State objects in the API
 from api.v1.views import app_views
 from flask import Flask, jsonify, request, abort
 from models import storage
-from models.users import User
+from models.user import User
 
 
-@app_views.route('/users', method=['GET'], strict_slashes=FALSE)
+@app_views.route('/users', methods=['GET'])
 def get_users():
     """Retrieve the list of all user objects"""
     users = storage.all(User).values()
     return jsonify([user.to_dict for user in users])
 
 
-@app_views.route('/users/<user_id>', method=['GET'],
-                 strict_slashes=FALSE)
+@app_views.route('/users/<user_id>', methods=['GET'])
 def get_user(user_id):
     """Retrieve a user object by ID"""
     user = storage.get(User, user_id)
@@ -27,8 +26,7 @@ def get_user(user_id):
     return jsonify(user.to_dict())
 
 
-@app_views.route('/users/<user_id>', method=['DELETE'],
-                 strict_slashes=FALSE)
+@app_views.route('/users/<user_id>', methods=['DELETE'])
 def delete_user(user_id):
     """Delete a user object by ID"""
     user = storage.get(User, user_id)
@@ -39,7 +37,7 @@ def delete_user(user_id):
     return jsonify({}), 200
 
 
-@app_views.route('/users', method=['POST'], strict_slashes=FALSE)
+@app_views.route('/users', methods=['POST'])
 def create_user():
     """Create a new user"""
     data = request.get_json()
@@ -55,8 +53,7 @@ def create_user():
     return jsonify(new_user.to_dict()), 201
 
 
-@app_views.route('/users/<user_id>', method=['PUT'],
-                 strict_slashes=FALSE)
+@app_views.route('/users/<user_id>', methods=['PUT'])
 def update_user(user_id):
     """Update a user object by ID"""
     user = storage.get(User, user_id)

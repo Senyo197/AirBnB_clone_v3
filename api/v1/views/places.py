@@ -12,8 +12,7 @@ from models.state import State
 from models.user import User
 
 
-@app_views.route('/cities/<city_id>/places', method=['GET'],
-                 strict_slashes=FALSE)
+@app_views.route('/cities/<city_id>/places', methods=['GET'])
 def get_places(city_id):
     """Retrieve the list of all place objects of a city"""
     city = storage.get(City, city_id)
@@ -23,7 +22,7 @@ def get_places(city_id):
     return jsonify(places)
 
 
-@app_views.route('/places/<place_id>', method=['GET'], strict_slashes=FALSE)
+@app_views.route('/places/<place_id>', methods=['GET'])
 def get_place(place_id):
     """Retrieve a specific place object"""
     place = storage.get(Place, place_id)
@@ -32,7 +31,7 @@ def get_place(place_id):
     return jsonify(place.to_dict())
 
 
-@app_views.route('/places/<place_id>', method=['DELETE'], strict_slashes=FALSE)
+@app_views.route('/places/<place_id>', methods=['DELETE'])
 def delete_place(place_id):
     """Delete a place object by ID"""
     place = storage.get(Place, place_id)
@@ -43,8 +42,7 @@ def delete_place(place_id):
     return jsonify({}), 200
 
 
-@app_views.route('/cities/<city_id>/places', method=['POST'],
-                 strict_slashes=FALSE)
+@app_views.route('/cities/<city_id>/places', methods=['POST'])
 def create_place(city_id):
     """Create a new place"""
     city = storage.get(City, city_id)
@@ -57,18 +55,16 @@ def create_place(city_id):
         abort(400, description="Missing user_id")
     if 'name' not in data:
         abort(400, description="Missing name")
-
     user = storage.get(User, data['user_id'])
     if user is None:
         abort(404)
-
-    new_place = Place(city_id=city_id, user_id=data['user_id', **data])
+    new_place = Place(city_id=city_id, user_id=data['user_id'], **data)
     storage.new(new_place)
     storage.save()
     return jsonify(new_place.to_dict()), 201
 
 
-@app_views.route('/places/<place_id>', method=['PUT'], strict_slashes=FALSE)
+@app_views.route('/places/<place_id>', methods=['PUT'])
 def update_place(place_id):
     """Update a Place object by ID"""
     place = storage.get(Place, place_id)

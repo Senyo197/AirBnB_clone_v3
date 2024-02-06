@@ -12,8 +12,7 @@ from models.user import User
 from models.review import Review
 
 
-@app_views.route('/places/<place_id>/reviews', method=['GET'],
-                 strict_slashes=FALSE)
+@app_views.route('/places/<place_id>/reviews', methods=['GET'])
 def get_reviews(place_id):
     """Retrieve the list of all review objects of a city"""
     place = storage.get(Place, place_id)
@@ -23,7 +22,7 @@ def get_reviews(place_id):
     return jsonify(reviews)
 
 
-@app_views.route('/reviews/<review_id>', method=['GET'], strict_slashes=FALSE)
+@app_views.route('/reviews/<review_id>', methods=['GET'])
 def get_review(review_id):
     """Retrieve a specific review object"""
     review = storage.get(Review, review_id)
@@ -32,8 +31,7 @@ def get_review(review_id):
     return jsonify(review.to_dict())
 
 
-@app_views.route('/reviews/<review_id>', method=['DELETE'],
-                 strict_slashes=FALSE)
+@app_views.route('/reviews/<review_id>', methods=['DELETE'])
 def delete_review(review_id):
     """Delete a review object by ID"""
     review = storage.get(Review, review_id)
@@ -44,9 +42,8 @@ def delete_review(review_id):
     return jsonify({}), 200
 
 
-@app_views.route('/places/<place_id>/reviews', method=['POST'],
-                 strict_slashes=FALSE)
-def create_place(place_id):
+@app_views.route('/places/<place_id>/reviews', methods=['POST'])
+def create_review(place_id):
     """Create a new review"""
     place = storage.get(Place, place_id)
     if city is None:
@@ -61,14 +58,14 @@ def create_place(place_id):
     user = storage.get(User, data['user_id'])
     if user is None:
         abort(404)
-    new_review = Review(place_id=place_id, **data])
+    new_review = Review(place_id=place_id, **data)
     storage.new(new_review)
     storage.save()
     return jsonify(new_review.to_dict()), 201
 
 
-@app_views.route('/reviews/<review_id>', method=['PUT'], strict_slashes=FALSE)
-def update_place(review_id):
+@app_views.route('/reviews/<review_id>', methods=['PUT'])
+def update_review(review_id):
     """Update a review object by ID"""
     review = storage.get(Review, review_id)
     if review is None:

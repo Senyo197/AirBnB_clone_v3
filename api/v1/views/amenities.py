@@ -7,18 +7,17 @@ This module defines ithe views for amenity objects in the API
 from api.v1.views import app_views
 from flask import Flask, jsonify, request, abort
 from models import storage
-from models.amenities import Amenity
+from models.amenity import Amenity
 
 
-@app_views.route('/amenities', method=['GET'], strict_slashes=FALSE)
+@app_views.route('/amenities', methods=['GET'])
 def get_amenities():
     """Retrieve the list of all Amenity objects"""
     amenities = storage.all(Amenity).values()
     return jsonify([amenity.to_dict for amenity in amenities])
 
 
-@app_views.route('/amenities/<amenity_id>', method=['GET'],
-                 strict_slashes=FALSE)
+@app_views.route('/amenities/<amenity_id>', methods=['GET'])
 def get_amenity(amenity_id):
     """Retrieve a Amenity object by ID"""
     amenity = storage.get(Amenity, amenity_id)
@@ -27,8 +26,7 @@ def get_amenity(amenity_id):
     return jsonify(amenity.to_dict())
 
 
-@app_views.route('/amenities/<amenity_id>', method=['DELETE'],
-                 strict_slashes=FALSE)
+@app_views.route('/amenities/<amenity_id>', methods=['DELETE'])
 def delete_amenity(amenity_id):
     """Delete a Amenity object by ID"""
     amenity = storage.get(Amenity, amenity_id)
@@ -39,7 +37,7 @@ def delete_amenity(amenity_id):
     return jsonify({}), 200
 
 
-@app_views.route('/amenities', method=['POST'], strict_slashes=FALSE)
+@app_views.route('/amenities', methods=['POST'])
 def create_amenity():
     """Create a new amenity"""
     data = request.get_json()
@@ -53,8 +51,7 @@ def create_amenity():
     return jsonify(new_amenity.to_dict()), 201
 
 
-@app_views.route('/amenities/<amenity_id>', method=['PUT'],
-                 strict_slashes=FALSE)
+@app_views.route('/amenities/<amenity_id>', methods=['PUT'])
 def update_amenity(amenity_id):
     """Update a Amenity object by ID"""
     amenity = storage.get(Amenity, amenity_id)
