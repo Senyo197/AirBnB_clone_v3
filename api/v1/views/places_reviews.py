@@ -58,11 +58,9 @@ def create_place(place_id):
         abort(400, description="Missing user_id")
     if 'text' not in data:
         abort(400, description="Missing text")
-
     user = storage.get(User, data['user_id'])
     if user is None:
         abort(404)
-
     new_review = Review(place_id=place_id, **data])
     storage.new(new_review)
     storage.save()
@@ -79,7 +77,8 @@ def update_place(review_id):
     if not data:
         abort(400, description="Not a JSON")
     for key, value in data.items():
-        if key not in ['id', 'user_id', 'place_id', 'created_at', 'updated_at']:
+        if key not in ['id', 'user_id', 'place_id', 'created_at',
+                        'updated_at']:
             setattr(review, key, value)
     storage.save()
     return jsonify(review.to_dict()), 200

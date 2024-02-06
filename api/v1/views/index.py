@@ -4,7 +4,9 @@ from flask import jsonify
 from . import app_views
 from models import storage
 
-# Define a route /status on the app_views Blueprint
+""" Define a route /status on the app_views Blueprint """
+
+
 @app_views.route('/stats', methods=['GET'])
 def stats():
     """
