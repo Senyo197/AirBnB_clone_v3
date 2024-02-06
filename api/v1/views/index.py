@@ -7,6 +7,12 @@ from models import storage
 """ Define a route /status on the app_views Blueprint """
 
 
+@app_views.route('/status', methods=['GET'])
+def status_ok():
+    """ returns  json message with status OK"""
+    return jsonify({"status": "OK"}), 200
+
+
 @app_views.route('/stats', methods=['GET'])
 def stats():
     """
