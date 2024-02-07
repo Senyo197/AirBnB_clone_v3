@@ -24,14 +24,14 @@ def teardown_appcontext(error):
     """
     storage.close()
 
-'''
+
 @app.errorhandler(404)
 def non_found(error):
     """
     Custom 404 error handler that returns a JSON-formatted 404 response
     """
     return jsonify({"error": "Not found"}), 404
-'''
+
 
 if __name__ == "__main__":
     import os
