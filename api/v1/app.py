@@ -15,6 +15,7 @@ app.register_blueprint(app_views)
 """ Enable CORS for /* on 0.0.0.0 """
 CORS(app, resources={r"/*": {"origins": "0.0.0.0"}})
 
+
 @app.teardown_appcontext
 def teardown_appcontext(error):
     """
@@ -23,12 +24,14 @@ def teardown_appcontext(error):
     """
     storage.close()
 
+
 @app.errorhandler(404)
 def non_found(error):
     """
     Custom 404 error handler that returns a JSON-formatted 404 response
     """
     return jsonify({"error": "Not found"}), 404
+
 
 if __name__ == "__main__":
     import os

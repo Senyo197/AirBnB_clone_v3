@@ -8,6 +8,7 @@ from . import app_views
 from flask import jsonify
 from models import storage
 
+
 @app_views.route('/status', methods=['GET'])
 def status_ok():
     """ returns  json message with status OK"""

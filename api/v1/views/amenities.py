@@ -9,6 +9,7 @@ from flask import Flask, jsonify, request, abort
 from models.amenity import Amenity
 from models import storage
 
+
 @app_views.route('/amenities', methods=['GET'])
 def get_amenities():
     """Retrieve the list of all Amenity objects"""
