@@ -6,9 +6,8 @@ This module defines ithe views for amenity objects in the API
 
 from api.v1.views import app_views
 from flask import Flask, jsonify, request, abort
-from models import storage
 from models.amenity import Amenity
-
+from models import storage
 
 @app_views.route('/amenities', methods=['GET'])
 def get_amenities():

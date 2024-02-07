@@ -1,9 +1,13 @@
 #!/usr/bin/python3
 
-from flask import Flask, jsonify
-from models import storage
+"""
+Entry point for flask
+"""
+
 from api.v1.views import app_views
 from flask_cors import CORS
+from flask import Flask, jsonify
+from models import storage
 
 
 app = Flask(__name__)

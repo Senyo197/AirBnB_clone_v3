@@ -6,10 +6,9 @@ This module defines the views for City objects in the API
 
 from api.v1.views import app_views
 from flask import Flask, jsonify, request, abort
-from models import storage
 from models.city import City
 from models.state import State
-
+from models import storage
 
 @app_views.route('/states/<state_id>/cities', methods=['GET'])
 def get_cities_by_state(state_id):

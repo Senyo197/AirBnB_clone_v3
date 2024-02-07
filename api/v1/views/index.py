@@ -1,11 +1,12 @@
 #!/usr/bin/python3
 
-from flask import jsonify
+"""
+Creates the Status route for app_views
+"""
+
 from . import app_views
+from flask import jsonify
 from models import storage
-
-""" Define a route /status on the app_views Blueprint """
-
 
 @app_views.route('/status', methods=['GET'])
 def status_ok():
