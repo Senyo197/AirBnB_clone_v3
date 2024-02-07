@@ -9,13 +9,13 @@ from flask import jsonify
 from models import storage
 
 
-@app_views.route('/status', methods=['GET'])
+@app_views.route('/status', methods=['GET'], strict_slashes=False)
 def status_ok():
     """ returns  json message with status OK"""
     return jsonify({"status": "OK"}), 200
 
 
-@app_views.route('/stats', methods=['GET'])
+@app_views.route('/stats', methods=['GET'], strict_slashes=False)
 def stats():
     """
     Endpoint to retrieve the number of each object type
