@@ -26,7 +26,7 @@ def get_places(city_id):
 def get_place(place_id):
     """Retrieve a specific place object"""
     place = storage.get(Place, place_id)
-    if place in None:
+    if place is None:
         abort(404)
     return jsonify(place.to_dict())
 
